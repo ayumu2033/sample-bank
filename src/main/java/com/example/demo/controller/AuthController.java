@@ -7,9 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.entity.UserInfo;
 import com.example.demo.form.LoginForm;
 import com.example.demo.form.SignupForm;
-import com.example.demo.service.UserDetailsService;
+import com.example.demo.service.UserInfoService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class AuthController {
 
   @Autowired
-  private UserDetailsService userDetailsService;
+  private UserInfoService userInfoService;
 
   @GetMapping("/login")
   public String getLogin(LoginForm loginForm) {
@@ -33,7 +34,7 @@ public class AuthController {
   @PostMapping(value="/signup")
   public String signup(SignupForm signupForm, Model model, HttpServletRequest request) throws ServletException{
       try {
-        userDetailsService.register(signupForm.getUsername(), signupForm.getPassword(), "USER");
+        userInfoService.register(signupForm.getUsername(), signupForm.getPassword(), UserInfo.Authority.ROLE_USER);
         request.login(signupForm.getUsername(), signupForm.getPassword());
       } catch (DuplicateKeyException e) {
           model.addAttribute("signupError", "同じユーザー名が使用されています");

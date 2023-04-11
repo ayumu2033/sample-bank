@@ -11,8 +11,27 @@
 
 <body>
   <h1>mypage</h1>
-  <p th:text="${user.Username}">failed</p>
-  <p th:text="${user.Authorities}">failed</p>
+  <p th:text="${user.userId}"></p>
+  <p th:text="${user.Username}"></p>
+  <p th:text="${user.Authorities}"></p>
+
+  <h2>mypage</h2>
+  <p>
+    Id:
+    <span th:text="${bankInfo.Id}"></span>
+  </p>
+  <p>
+    UserId:
+    <span th:text="${bankInfo.UserId}"></span>
+  </p>
+  <p>
+    BankNumber:
+    <span th:text="${bankInfo.BankNumber}"></span>
+  </p>
+  <p>
+    Amount:
+    <span th:text="${bankInfo.Amount}"></span>
+  </p>
 </body>
 
 </html>
