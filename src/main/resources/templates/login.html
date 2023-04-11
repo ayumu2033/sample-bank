@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/css/hu.css}" rel="stylesheet">
+  <title>SampleBank</title>
+
+</head>
+
+<body>
+  <h1>架空銀行</h1>
+  <h2>ログイン</h2>
+  <form method="post" name="login" th:action="@{/login}" th:object="${loginForm}">
+    <div th:if="${param.error} != null">
+      <div>ログインに失敗しました</div>
+    </div>
+    <div>
+      <label>ユーザー名
+        <input type="text" id="username" name="username" th:value="${loginForm.username}">
+      </label>
+    </div>
+    <div>
+      <label>パスワード
+        <input type="password" id="password" name="password" th:value="${loginForm.password}">
+      </label>
+    </div>
+    <button id="submit" type="submit">ログイン</button>
+  </form>
+
+  <div><a th:href="@{/signup}">登録画面</a></div>
+  <script>
+    // document.getElementById("submit").addEventListener("click", (event) => {
+    //   event.preventDefault();
+    //   const form = document.forms['login'];
+    //   fetch(form.action, {
+    //     method: "POST",
+    //     data: JSON.stringify(form),
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //   }).then((res) => {
+    //     console.log(res);
+    //   }).catch((err) => {
+    //     // networkErr
+    //     alert("ネットワークエラーです。リトライしてください")
+    //   })
+    //   return false;
+    // })
+  </script>
+</body>
+
+</html>

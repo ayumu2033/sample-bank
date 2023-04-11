@@ -17,13 +17,6 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
       if (response.isCommitted()) {
           return;
       }
-      
-      // response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-      // try (PrintWriter writer = response.getWriter()) {
-      //     writer.println("Access Denied!!");
-      // }
-
-      //Forward to the login page
-      request.getRequestDispatcher("/").forward(request, response);
+      response.sendRedirect("/?error="+ HttpServletResponse.SC_FORBIDDEN);
   }
 }

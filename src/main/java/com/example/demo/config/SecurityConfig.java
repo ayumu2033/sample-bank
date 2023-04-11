@@ -33,14 +33,16 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
 		.formLogin(withDefaults())
+		.formLogin(fl -> fl
+      .loginPage("/login")
+      .defaultSuccessUrl("/mypage"))
 		.httpBasic(withDefaults())
     .authorizeHttpRequests(ahr -> ahr
       .requestMatchers("/").permitAll()
       .requestMatchers("/signup","/login").anonymous()
       .requestMatchers("/css/**","/js/**","/img/**","/**.html").permitAll()
-      //他のリンクは全て認証が必要である。
-      .anyRequest().authenticated()  )
-      .exceptionHandling(exh->exh.accessDeniedHandler(new MyAccessDeniedHandler()));
+      .anyRequest().authenticated())
+    .exceptionHandling(exh->exh.accessDeniedHandler(new MyAccessDeniedHandler()));
     
     return http.build();
   }

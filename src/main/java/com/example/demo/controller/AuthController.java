@@ -2,15 +2,13 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.form.LoginForm;
 import com.example.demo.form.SignupForm;
-
 import com.example.demo.service.UserDetailsService;
 
 import jakarta.servlet.ServletException;
@@ -19,22 +17,17 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class AuthController {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-    
-    
+  @Autowired
+  private UserDetailsService userDetailsService;
+
   @GetMapping("/login")
-  public String getLogin(SignupForm signupForm, @AuthenticationPrincipal UserDetails userDetail) {
-    // TODO:ログイン時にリダイレクト
-    if(userDetail != null){
-        return "redirect:/";
-    }
-    return "signup";
+  public String getLogin(LoginForm loginForm) {
+    return "login.html";
   }
 
   @GetMapping("/signup")
   public String getSignup(SignupForm signupForm) {
-      return "signup";
+    return "signup.html";
   }
 
   @PostMapping(value="/signup")
@@ -44,10 +37,10 @@ public class AuthController {
         request.login(signupForm.getUsername(), signupForm.getPassword());
       } catch (DuplicateKeyException e) {
           model.addAttribute("signupError", "同じユーザー名が使用されています");
-          return "signup";
+          return "signup.html";
       } catch (DataAccessException e) {
           model.addAttribute("signupError", "ユーザー登録に失敗しました");
-          return "signup";
+          return "signup.html";
       } catch(ServletException e){
         throw e;
       }
