@@ -2,7 +2,6 @@ package com.example.demo.service.Impl;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +11,11 @@ import com.example.demo.service.BankInfoService;
 
 @Service
 public class BankInfoServiceImpl implements BankInfoService{
-  @Autowired
   private BankRepository bankRepository;
+
+  public BankInfoServiceImpl(BankRepository bankRepository) {
+    this.bankRepository = bankRepository;
+  }
 
   @Override
   public Bank create(Long userId) throws DataAccessException {

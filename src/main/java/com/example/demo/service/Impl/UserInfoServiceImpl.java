@@ -23,7 +23,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
   @Override
   @Transactional
-  public UserDetails register(String username, String rawPassword, UserInfo.Authority userRoll){
+  public UserInfo register(String username, String rawPassword, UserInfo.Authority userRoll){
     UserInfo user = new UserInfo(username, passwordEncoder.encode(rawPassword), userRoll);
     userInfoRepo.save(user);
     bankInfoService.create(user.getUserId());

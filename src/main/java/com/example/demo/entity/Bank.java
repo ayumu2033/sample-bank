@@ -6,14 +6,13 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Bank implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     public Long getId() {
@@ -21,7 +20,7 @@ public class Bank implements Serializable {
     }
 
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private Long userId;
 
     public Long getUserId() {
@@ -29,7 +28,7 @@ public class Bank implements Serializable {
     }
 
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String bankNumber;
 
     public String getBankNumber() {
@@ -50,7 +49,7 @@ public class Bank implements Serializable {
         this.amount = amount;
     }
 
-    protected Bank() {
+    Bank() {
         // no-args constructor required by JPA spec
         // this one is protected since it should not be used directly
     }
