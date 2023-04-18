@@ -1,9 +1,12 @@
 package com.example.demo.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Trade {
@@ -23,6 +26,8 @@ public class Trade {
   @Column(nullable = false)
   private String description;
   
+  @Column(nullable = false)
+  private Date createdTime;
 
   Trade() {
     // for framework
@@ -57,5 +62,14 @@ public class Trade {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+  
+  public Date getCreatedTime() {
+    return createdTime;
+  }
+
+  @PrePersist
+  public void onPrePersist() {
+      this.createdTime = new Date();
   }
 }
