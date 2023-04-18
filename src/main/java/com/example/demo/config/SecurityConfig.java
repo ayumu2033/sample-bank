@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 import com.example.demo.exception.MyAccessDeniedHandler;
 import com.example.demo.service.UserInfoService;
 
@@ -29,6 +30,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     UserInfoService userInfoService = context.getBean(UserInfoService.class);
+
     http
       .userDetailsService(userInfoService)
       .formLogin(withDefaults())

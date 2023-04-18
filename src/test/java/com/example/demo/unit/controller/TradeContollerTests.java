@@ -7,8 +7,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
@@ -16,14 +14,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.controller.BankInfoController;
 import com.example.demo.controller.TradeController;
-import com.example.demo.entity.Bank;
 import com.example.demo.entity.Trade;
 import com.example.demo.entity.UserInfo;
-import com.example.demo.service.BankInfoService;
 import com.example.demo.service.TradeService;
-import com.example.demo.service.Impl.BankInfoServiceImpl;
 import com.example.demo.service.Impl.TradeServiceImpl;
 import com.example.demo.testdata.TestData;
 

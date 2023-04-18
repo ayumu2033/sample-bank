@@ -34,6 +34,26 @@
   </p>
 
   <a th:href="@{/tradeHistory}">取引履歴</a>
+
+  <div>
+    <h2>取引</h2>
+    <form th:action="@{/trade}" method="post">
+      <label>
+        送金先:
+        <input name="targetUserId" type="number">
+      </label>
+      <label>
+        金額:
+        <input name="amount" type="number" min="1">
+      </label>
+      <label>
+        備考:
+        <input name="description" type="text" minlength="1">
+      </label>
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      <button type="submit">送金</button>
+    </form>
+  </div>
 </body>
 
 </html>
