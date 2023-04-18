@@ -41,7 +41,7 @@ public class TradeRepositoryTests {
     entityManager.persist(TestData.createTestNoIdTrade2());
     entityManager.persist(TestData.createTestNoIdTrade1());
     
-    Page<Trade> trades = tradeRepository.findByTargetUserIdOrSourceUserIdOrderByCreatedTimeDesc(1L, 1L, null);
+    Page<Trade> trades = tradeRepository.findByTargetUserIdOrSourceUserIdOrderByCreatedTimeDescTradeIdDesc(1L, 1L, null);
     assertEquals(5, trades.getSize());
   }
 }

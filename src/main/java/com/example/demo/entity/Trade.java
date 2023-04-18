@@ -29,15 +29,15 @@ public class Trade {
   @Column(nullable = false)
   private Date createdTime;
 
-  Trade() {
-    // for framework
-  }
-
   public Trade(Long targetUserId, Long sourceUserId, Long amount, String description) {
     this.targetUserId = targetUserId;
     this.sourceUserId = sourceUserId;
     this.amount = amount;
     this.description = description;
+  }
+
+  Trade() {
+    // for framework
   }
 
   public Long getTradeId() {

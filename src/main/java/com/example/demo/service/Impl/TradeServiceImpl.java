@@ -27,7 +27,7 @@ public class TradeServiceImpl implements TradeService{
   
   @Override
   public Page<Trade> findAll(Long userId, Pageable page) {
-    return tradeRepository.findByTargetUserIdOrSourceUserIdOrderByCreatedTimeDesc(userId,userId, page);
+    return tradeRepository.findByTargetUserIdOrSourceUserIdOrderByCreatedTimeDescTradeIdDesc(userId,userId, page);
   }
 
 }

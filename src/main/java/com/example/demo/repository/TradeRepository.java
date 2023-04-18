@@ -9,5 +9,5 @@ import com.example.demo.entity.Trade;
 public interface TradeRepository extends JpaRepository<Trade,Long>{
   Page<Trade> findByTargetUserId(Long id, Pageable page);
   Page<Trade> findBySourceUserId(Long id, Pageable page);
-  Page<Trade> findByTargetUserIdOrSourceUserIdOrderByCreatedTimeDesc(Long targetId,Long sourceId, Pageable page);
+  Page<Trade> findByTargetUserIdOrSourceUserIdOrderByCreatedTimeDescTradeIdDesc(Long targetId,Long sourceId, Pageable page);
 }

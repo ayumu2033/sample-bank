@@ -31,7 +31,7 @@ public class TradeController {
   }
 
   @GetMapping("/tradeHistory")
-  public ModelAndView index(ModelAndView mav, @AuthenticationPrincipal UserInfo user, @PageableDefault Pageable pageable){
+  public ModelAndView index(ModelAndView mav, @AuthenticationPrincipal UserInfo user, @PageableDefault(page = 0, size = 25)  Pageable pageable){
     mav.setViewName("trade_history.html");
     mav.addObject("user",user );
     mav.addObject("trades",tradeService.findAll(user.getUserId(), pageable));
